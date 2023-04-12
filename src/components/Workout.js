@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Workout = ({ title, instructor, time, backColor }) => {
+  const navigation = useNavigation();
+
   const handleButtonPress = () => {
-    console.log("Button Pressed");
+    navigation.navigate("WorkoutDetails");
   };
 
   return (
@@ -23,7 +26,7 @@ const Workout = ({ title, instructor, time, backColor }) => {
       </View>
 
       <View style={s.imageContainer}>
-        <Image style={s.image} source={require("../assets/workout.png")} />
+        <Image style={s.image} source={require("../../assets/workout.png")} />
       </View>
     </View>
   );
