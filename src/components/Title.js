@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Platform } from "react-native";
 import React from "react";
 
 const Title = ({ title }) => {
@@ -21,6 +21,6 @@ const s = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 40,
     letterSpacing: 1.125,
-    fontFamily: "cursive",
+    fontFamily: Platform.select({ android: "cursive" }, { ios: "" }),
   },
 });

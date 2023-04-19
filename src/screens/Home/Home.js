@@ -5,11 +5,11 @@ import Header from "../../components/Header";
 import Title from "../../components/Title";
 
 const MENU_DATA = [
-  { iconName: "fitness-outline" },
-  { iconName: "man" },
-  { iconName: "woman" },
-  { iconName: "bicycle" },
-  { iconName: "football" },
+  { iconName: "fitness-outline", id: 0 },
+  { iconName: "man", id: 1 },
+  { iconName: "woman", id: 2 },
+  { iconName: "bicycle", id: 3 },
+  { iconName: "football", id: 4 },
 ];
 
 const Home = () => {
@@ -24,7 +24,7 @@ const Home = () => {
         contentContainerStyle={s.menuContainer}
       >
         {MENU_DATA.map((item) => (
-          <MenuItem name={item.iconName} />
+          <MenuItem name={item.iconName} key={item.id} />
         ))}
       </ScrollView>
 

@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AppButton from "./AppButton";
 
 const Workout = ({ title, instructor, time, backColor }) => {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    navigation.navigate("WorkoutDetails");
+    navigation.navigate("WorkoutDetails", {
+      duration: time,
+      trainerName: instructor,
+      workoutTitle: title,
+    });
   };
 
   return (
@@ -18,10 +22,7 @@ const Workout = ({ title, instructor, time, backColor }) => {
           <Text style={s.instructor}>with {instructor}</Text>
         </View>
         <View style={s.buttonWrapper}>
-          <Pressable onPress={handleButtonPress} style={s.button}>
-            <AntDesign name="caretright" size={20} color="black" />
-            <Text style={s.timer}>{time} min</Text>
-          </Pressable>
+          <AppButton handlePress={handleButtonPress} time={time} />
         </View>
       </View>
 
@@ -81,20 +82,5 @@ const s = StyleSheet.create({
   buttonWrapper: {
     flex: 1,
     justifyContent: "center",
-  },
-  button: {
-    backgroundColor: "white",
-    width: 120,
-    height: 40,
-    borderRadius: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingLeft: 12,
-  },
-  timer: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginLeft: 10,
   },
 });
