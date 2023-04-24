@@ -11,7 +11,7 @@ const HomeStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
-        options={{ headerShown: true }}
+        options={{ headerShown: true, headerTitle: "Workout Details" }}
         name="WorkoutDetails"
         component={WorkoutDetials}
       />

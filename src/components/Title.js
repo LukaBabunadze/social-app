@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Platform } from "react-native";
 import React from "react";
 
-const Title = ({ title }) => {
+const Title = ({ title, addContainerStyle, addTextStyle }) => {
   return (
-    <View style={s.container}>
-      <Text style={s.titleStyle}>{title}</Text>
+    <View style={[s.container, addContainerStyle]}>
+      <Text style={[s.titleStyle, addTextStyle]}>{title}</Text>
     </View>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../../screens/Home/Home";
 import Schedule from "../../screens/Schedule/Schedule";
-import Saved from "../../screens/Saved/Saved";
+import Saved from "../../screens/Contacts/Contacts";
 import Goals from "../../screens/Goals/Goals";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -72,6 +72,9 @@ const BottomTabNavigation = () => {
               color={color}
             />
           ),
+          headerShown: true,
+          headerTitle: "Contacts",
+          headerTitleStyle: {textTransform: 'uppercase', paddingVertical: 5,}
         }}
         name={"Saved"}
         component={Saved}
