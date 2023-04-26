@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -10,12 +16,49 @@ const Contacts = () => {
       .then((result) => result.json())
       .then((res) => {
         setUsers(res);
-      });
+      })
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const deleteUser = (userId) => {
+    fetch(`https://fakestoreapi.com/users/${userId}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
+  };
+
+  const updateUser = (userId) => {
+    fetch(`https://fakestoreapi.com/users/${userId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        email: "John@gmail.com",
+        username: "johnd",
+        password: "m38rmF$",
+        name: {
+          firstname: "John",
+          lastname: "Doe",
+        },
+        address: {
+          city: "kilcoole",
+          street: "7835 new road",
+          number: 3,
+          zipcode: "12926-3874",
+          geolocation: {
+            lat: "-37.3159",
+            long: "81.1496",
+          },
+        },
+        phone: "1-570-236-7033",
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
+  };
 
   return (
     <FlatList
@@ -23,8 +66,11 @@ const Contacts = () => {
       showsVerticalScrollIndicator={false}
       data={users}
       renderItem={({ item, index }) => (
-        <View style={[s.contactItem, index % 2 !== 0 ? s.evenItemStyle : ""]}>
-          {console.log(item)}
+        <TouchableOpacity
+          onPress={() => deleteUser(item.id)}
+          style={[s.contactItem, index % 2 !== 0 ? s.evenItemStyle : ""]}
+        >
+          {/* {console.log(item)} */}
           <View style={s.contactIcon}>
             <FontAwesome5
               name="user-plus"
@@ -53,7 +99,7 @@ const Contacts = () => {
               {item.phone}
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       )}
     />
   );

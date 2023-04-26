@@ -6,13 +6,15 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import AppButton from "../../components/AppButton";
 import { AntDesign } from "@expo/vector-icons";
 import PreviewModal from "../Modals/PreviewModal";
 
 const WorkoutDetials = ({ route }) => {
   const { duration, trainerName, workoutTitle } = route.params;
+
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <ScrollView contentContainerStyle={s.container}>
@@ -38,7 +40,10 @@ const WorkoutDetials = ({ route }) => {
       <Pressable style={s.button}>
         <Text style={[s.name, s.buttonText]}>Let's Go</Text>
       </Pressable>
-      <Pressable style={[s.button, s.previewButton]}>
+      <Pressable
+        style={[s.button, s.previewButton]}
+        onPress={() => setOpenModal(true)}
+      >
         <View style={s.previewButtonIcon}>
           <AntDesign name="caretright" size={10} color="black" />
         </View>
@@ -52,7 +57,7 @@ const WorkoutDetials = ({ route }) => {
         extension made up of a few commands that generate and insert lorem ipsum
         text into a text file. To use the extension,
       </Text>
-      <PreviewModal />
+      <PreviewModal openModal={openModal} setOpenModal={setOpenModal} />
     </ScrollView>
   );
 };

@@ -37,7 +37,7 @@ const BottomTabNavigation = () => {
         name={"HomeStack"}
         component={HomeStack}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome5
@@ -62,7 +62,7 @@ const BottomTabNavigation = () => {
         }}
         name={"Goals"}
         component={Goals}
-      />
+      /> */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (

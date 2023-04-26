@@ -5,24 +5,35 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Title from "../../components/Title";
+import { UserContext } from "../../../App";
 
 const Login = () => {
+  const { setIsUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleUserLogin = () => {
     fetch("https://fakestoreapi.com/auth/login", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        username: "jimmie_k",
-        password: "klein*#%*",
+        username: username,
+        password: password,
+        // username: "mor_2314",
+        // password: "83r5^_",
       }),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => setIsUser(json))
+      .catch((error) => console.error(error));
   };
+
+  // username: "mor_2314",
+  // password: "83r5^_",
 
   return (
     <View style={s.container}>
@@ -40,7 +51,7 @@ const Login = () => {
         style={s.inputWrapper}
         placeholder="enter your password"
         onChangeText={setPassword}
-        // secureTextEntry={true}
+        secureTextEntry={true}
       />
       <TouchableOpacity style={s.loginButton} onPress={handleUserLogin}>
         <Text style={s.loginText}>Log in</Text>

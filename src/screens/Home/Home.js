@@ -1,8 +1,18 @@
-import { StyleSheet, View, Text, ScrollView, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import Workout from "../../components/Workout";
 import MenuItem from "../../components/MenuItem";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 
 const MENU_DATA = [
   { iconName: "fitness-outline", id: 0 },
@@ -13,8 +23,18 @@ const MENU_DATA = [
 ];
 
 const Home = () => {
+  const { setAuthorized } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    await AsyncStorage.removeItem("user");
+    setAuthorized(false);
+  };
+  
   return (
-    <View style={s.container}>
+    <ScrollView
+      contentContainerStyle={s.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Header />
       <Title title={"Select Workout"} />
 
@@ -50,7 +70,10 @@ const Home = () => {
           backColor={"#ebb7d8"}
         />
       </View>
-    </View>
+      <TouchableOpacity style={s.signoutButton} onPress={handleSignOut}>
+        <Text style={s.signoutText}>Sign Out</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 };
 
@@ -59,10 +82,24 @@ export default Home;
 const s = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingVertical: 50,
   },
   menuContainer: {
     marginBottom: 30,
     paddingVertical: 2,
+  },
+  signoutButton: {
+    backgroundColor: "#FFC84F",
+    height: 50,
+    borderRadius: 8,
+    marginTop: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  signoutText: {
+    textTransform: "uppercase",
+    fontSize: 18,
+    fontWeight: "700",
+    color: "white",
   },
 });
