@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Platform } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import AppButton from "./AppButton";
@@ -18,6 +18,7 @@ const Workout = ({ title, instructor, time, backColor }) => {
     <View style={[s.conatainer, { backgroundColor: backColor }]}>
       <View style={s.textContainer}>
         <View style={s.titleWrapper}>
+          {/* {Platform.OS === "android" ? <Text>android</Text> : <Text>ios</Text>} */}
           <Text style={s.title}>{title}</Text>
           <Text style={s.instructor}>with {instructor}</Text>
         </View>

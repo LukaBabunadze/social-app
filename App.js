@@ -1,6 +1,5 @@
-import { useState, useContext, createContext, useEffect } from "react";
+import { useState, createContext, useEffect } from "react";
 import BottomTabNavigation from "./src/navigation/BottomTabs/BottomTabNavigation";
-import Home from "./src/screens/Home/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "./src/navigation/AuthStack/AuthStack";
 import AsyncStorage from "@react-native-async-storage/async-storage";

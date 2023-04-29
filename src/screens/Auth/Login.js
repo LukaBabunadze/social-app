@@ -32,9 +32,6 @@ const Login = () => {
       .catch((error) => console.error(error));
   };
 
-  // username: "mor_2314",
-  // password: "83r5^_",
-
   return (
     <View style={s.container}>
       <Title
